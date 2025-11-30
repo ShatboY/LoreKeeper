@@ -1,8 +1,11 @@
 #ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
 
+#include "ui/ui_logindialog.h"
 #include <QDialog>
 #include "../core/AuthManager/AuthManager.h"
+#include "forgotpassworddialog.h"
+#include "registerdialog.h"
 #include <QSettings>
 #include <QMessageBox>
 #include <QDebug>

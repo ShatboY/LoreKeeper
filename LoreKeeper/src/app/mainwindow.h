@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ui/ui_mainwindow.h"
 #include <QMainWindow>
 #include "../core/AuthManager/AuthManager.h"
 #include <QMessageBox>

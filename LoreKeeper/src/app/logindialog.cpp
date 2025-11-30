@@ -1,5 +1,4 @@
 #include "logindialog.h"
-#include "./ui_logindialog.h"
 
 LoginDialog::LoginDialog(QWidget *parent)
     : QDialog(parent)
@@ -81,11 +80,37 @@ bool LoginDialog::ValidateInput() {
 }
 
 void LoginDialog::OnRegisterClicked() {
-    QMessageBox::information(this, "提示", "注册功能尚未实现！");
+    RegisterDialog register_dialog(this);
+
+    // 连接注册成功信号，自动填充用户名
+//    connect(&register_dialog, &RegisterDialog::UserRegistered, [this](const QString& username) {
+//        login_w_ui_->UserName_lineEdit->setText(username);
+//    });
+
+    if (register_dialog.exec() == QDialog::Accepted) {
+        QMessageBox::information(this, "提示", "注册成功！请使用新用户名和密码登录。");
+        login_w_ui_->Password_lineEdit->setFocus();
+    }
 }
 
 void LoginDialog::OnForgotPasswordClicked() {
-    QMessageBox::information(this, "提示", "忘记密码功能尚未实现！");
+    ForgotPasswordDialog forgot_password_dialog(this);
+
+    // 预填当前输入的用户名（如果有）
+    QString current_username = login_w_ui_->UserName_lineEdit->text().trimmed();
+    if (!current_username.isEmpty()) {
+//        forgot_password_dialog.setUsername(current_username);
+    }
+
+    if (forgot_password_dialog.exec() == QDialog::Accepted) {
+        // 密码重置成功
+        QMessageBox::information(this, "提示", "密码重置成功！请使用新密码登录。");
+
+        // 清空密码框，让用户重新输入
+        login_w_ui_->Password_lineEdit->clear();
+        login_w_ui_->UserName_lineEdit->setFocus();
+    }
+
 }
 
 void LoginDialog::UpdateLoginButtonState() {

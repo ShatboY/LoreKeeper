@@ -16,15 +16,17 @@ set(PROJECT_SOURCES
         src/app/main.cpp
         src/app/logindialog.cpp
         src/app/logindialog.h
-        src/app/logindialog.ui
+        src/app/ui/logindialog.ui
         src/core/AuthManager/AuthManager.cpp
+        src/app/registerdialog.cpp
+        src/app/forgotpassworddialog.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(LoreKeeper
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-            src/app/mainwindow.h src/app/mainwindow.cpp src/app/mainwindow.ui
+            src/app/mainwindow.h src/app/mainwindow.cpp src/app/ui/mainwindow.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LoreKeeper APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
