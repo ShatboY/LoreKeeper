@@ -11,8 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     UpdateWelcomeMessage();
 }
 
-MainWindow::~MainWindow() = default;
-
 void MainWindow::SetupUI() {
     // 设置窗口标题
     setWindowTitle("LoreKeeper - 个人资料");

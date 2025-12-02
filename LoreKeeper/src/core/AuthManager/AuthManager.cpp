@@ -86,7 +86,7 @@ bool AuthManager::ChangePassword(const QString &username, const QString &old_pas
     return true;
 }
 
-void AuthManager::SetCurrentUser(const QString &username) {
+void AuthManager::SetCurrentUser(const QString &username) noexcept {
     m_current_user_ = username;
 }
 
@@ -94,11 +94,15 @@ QString AuthManager::GetCurrentUser() const {
     return m_current_user_;
 }
 
-void AuthManager::ClearCurrentUser() {
+void AuthManager::ClearCurrentUser() noexcept {
     m_current_user_.clear();
 }
 
-AuthManager& AuthManager::instance() {
+bool AuthManager::UserExists(const QString &username) const {
+    return m_users_.contains(username);
+}
+
+AuthManager& AuthManager::instance() noexcept {
     static AuthManager instance;
     return instance;
 }

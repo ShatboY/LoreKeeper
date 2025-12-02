@@ -14,19 +14,32 @@ namespace  core {
 class AuthManager : public QObject {
     Q_OBJECT
 public:
-    static AuthManager& instance();
+    static AuthManager& instance() noexcept;
+
+    AuthManager();
+
+    AuthManager(const AuthManager&) = delete;
+
+    AuthManager& operator=(const AuthManager&) = delete;
+
+    AuthManager(AuthManager&&) = delete;
+
+    AuthManager& operator=(AuthManager&&) = delete;
+
+    ~AuthManager() = default;
 
     bool ValidateUser(const QString& username, const QString& password);
-    void SetCurrentUser(const QString& username);
+    void SetCurrentUser(const QString& username) noexcept;
     QString GetCurrentUser() const;
-    void ClearCurrentUser();
+    void ClearCurrentUser() noexcept;
 
     // 用户管理方法
     bool RegisterUser(const QString& username, const QString& password);
     bool ChangePassword(const QString& username, const QString& old_password, const QString& new_password);
+    bool UserExists(const QString& username) const;
 
 private:
-    AuthManager();
+
     void LoadUsers();
     void SaveUsers();
 
@@ -36,7 +49,7 @@ private:
 
 };
 
-static AuthManager& AuthMangerGetInstance() {
+static AuthManager& AuthMangerGetInstance() noexcept {
     return AuthManager::instance();
 }
 
