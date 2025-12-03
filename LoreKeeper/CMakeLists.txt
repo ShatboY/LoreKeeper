@@ -20,6 +20,8 @@ set(PROJECT_SOURCES
         src/core/AuthManager/AuthManager.cpp
         src/app/registerdialog.cpp
         src/app/forgotpassworddialog.cpp
+        src/core/ConnectManager/ConnectManager.cpp
+        src/core/ConnectManager/ConnectManager.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -72,12 +72,8 @@ bool AuthManager::ValidateUser(const QString &username, const QString &password)
 
 }
 
-bool AuthManager::ChangePassword(const QString &username, const QString &old_password, const QString &new_password) {
+bool AuthManager::ChangePassword(const QString &username, const QString &new_password) {
     if (!m_users_.contains(username)) {
-        return false;
-    }
-
-    if (m_users_[username] != old_password) {
         return false;
     }
 

@@ -76,6 +76,13 @@ bool LoginDialog::ValidateInput() {
         login_w_ui_->Password_lineEdit->setFocus();
         return false;
     }
+
+    if (!core::AuthMangerGetInstance().UserExists(username)) {
+        QMessageBox::warning(this, "错误", "用户不存在！");
+        login_w_ui_->UserName_lineEdit->setFocus();
+        login_w_ui_->UserName_lineEdit->selectAll();
+        return false;
+    }
     return true;
 }
 
@@ -99,7 +106,7 @@ void LoginDialog::OnForgotPasswordClicked() {
     // 预填当前输入的用户名（如果有）
     QString current_username = login_w_ui_->UserName_lineEdit->text().trimmed();
     if (!current_username.isEmpty()) {
-//        forgot_password_dialog.setUsername(current_username);
+        forgot_password_dialog.SetUsername(current_username);
     }
 
     if (forgot_password_dialog.exec() == QDialog::Accepted) {

@@ -28,10 +28,16 @@ public:
     
     ~ForgotPasswordDialog() = default;
 
+    void SetUsername(const QString& username) noexcept;
+
 private slots:
     void OnResetPasswordClicked();
     void OnCancelClicked() noexcept;
     void UpdateResetPasswordButtonState() const;
+
+private:
+    bool ValidateInput();
+    bool CheckUserExistence(const QString& username);
 
 private:
     std::unique_ptr<Ui::ForgotPasswordDialog> forgotpassword_w_ui_{nullptr};

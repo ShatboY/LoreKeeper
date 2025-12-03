@@ -35,7 +35,7 @@ public:
 
     // 用户管理方法
     bool RegisterUser(const QString& username, const QString& password);
-    bool ChangePassword(const QString& username, const QString& old_password, const QString& new_password);
+    bool ChangePassword(const QString& username, const QString& new_password);
     bool UserExists(const QString& username) const;
 
 private:

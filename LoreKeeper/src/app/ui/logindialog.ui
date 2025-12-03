@@ -137,8 +137,8 @@
    </property>
    <property name="font">
     <font>
-     <family>微软雅黑</family>
-     <pointsize>13</pointsize>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
      <bold>false</bold>
     </font>
    </property>

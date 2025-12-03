@@ -53,6 +53,8 @@ void RegisterDialog::UpdateRegisterButtonState() const {
 
     register_w_ui_->Register_pushButton->setEnabled(
             (!username.isEmpty()) && (!password.isEmpty()) && (!confirmPassword.isEmpty()));
+
+    register_w_ui_->Register_pushButton->setDefault(true);
 }
 
 bool RegisterDialog::ValidInput() {
