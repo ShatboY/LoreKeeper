@@ -7,8 +7,14 @@
 
 #include <QObject>
 #include <QString>
+#include <QPushButton>
+#include <QLineEdit>
 #include <QMap>
 
+#include "../../app/logindialog.h"
+#include "../../app/registerdialog.h"
+#include "../../app/forgotpassworddialog.h"
+#include "../../app/mainwindow.h"
 
 namespace core {
 
@@ -17,19 +23,13 @@ public:
     // 统一的连接设置接口
     template<typename DialogType, typename UiClass>
     static void SetupConnections(DialogType* dialog, UiClass* ui) {
-        SetupDialogConnections(dialog, ui);
+        SetupDialogConnections(*dialog, *ui);
     }
 
 private:
     template<typename DialogType, typename UiClass>
-    static void SetupDialogConnections(DialogType* dialog, UiClass* ui);
+    static void SetupDialogConnections(DialogType& dialog, UiClass& ui);
 };
-
-// 模板函数定义
-template<typename DialogType, typename UiClass>
-void ConnectManager::SetupDialogConnections(DialogType* dialog, UiClass* ui) {
-    // 可以提供默认实现或保持为空，具体实现在.cpp中通过特化提供
-}
 
 } // core
 

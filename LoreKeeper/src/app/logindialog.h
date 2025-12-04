@@ -4,6 +4,7 @@
 #include "ui/ui_logindialog.h"
 #include <QDialog>
 #include "../core/AuthManager/AuthManager.h"
+#include "../core/ConnectManager/ConnectManager.h"
 #include "forgotpassworddialog.h"
 #include "registerdialog.h"
 #include <QSettings>
@@ -24,14 +25,13 @@ public:
     explicit LoginDialog(QWidget *parent = nullptr);
     ~LoginDialog() override;
 
-private slots:
+public slots:
     void OnLoginClicked();
     void OnRegisterClicked();
     void OnForgotPasswordClicked();
     void UpdateLoginButtonState();
 
 private:
-    void SetupConnections();
     void LoadSavedCredentials();
     void SaveCredentials();
     bool ValidateInput();

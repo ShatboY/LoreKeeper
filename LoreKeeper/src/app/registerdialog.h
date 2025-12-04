@@ -4,6 +4,7 @@
 #include "ui/ui_registerdialog.h"
 #include <QDialog>
 #include "../core/AuthManager/AuthManager.h"
+#include "../core/ConnectManager/ConnectManager.h"
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QDebug>
@@ -32,7 +33,7 @@ public:
     signals:
         void UserRegistered(const QString& username);
 
-private slots:
+public slots:
     void OnRegisterClicked();
     void OnCancelClicked() noexcept;
     void UpdateRegisterButtonState() const;

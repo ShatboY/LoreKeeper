@@ -11,24 +11,14 @@ LoginDialog::LoginDialog(QWidget *parent)
     // 设置密码框的回显模式
     login_w_ui_->Password_lineEdit->setEchoMode(QLineEdit::Password);
 
-    SetupConnections();
+    // 设置连接
+    core::ConnectManager::SetupConnections(this, login_w_ui_.get());
+
     LoadSavedCredentials();
-    UpdateLoginButtonState();
+
 }
 
 LoginDialog::~LoginDialog() = default;
-
-void LoginDialog::SetupConnections() {
-    // 连接登录按钮
-    connect(login_w_ui_->Login_pushButton, &QPushButton::clicked, this, &LoginDialog::OnLoginClicked);
-    // 连接注册按钮
-    connect(login_w_ui_->Gegister_pushButton, &QPushButton::clicked, this, &LoginDialog::OnRegisterClicked);
-    // @TODO 忘记密码按钮
-    connect(login_w_ui_->Forgot_pushButton, &QPushButton::clicked, this, &LoginDialog::OnForgotPasswordClicked);
-    // 实时验证输入
-    connect(login_w_ui_->UserName_lineEdit, &QLineEdit::textChanged, this, &LoginDialog::UpdateLoginButtonState);
-    connect(login_w_ui_->Password_lineEdit, &QLineEdit::textChanged, this, &LoginDialog::UpdateLoginButtonState);
-}
 
 void LoginDialog::OnLoginClicked() {
     if (!ValidateInput()) {

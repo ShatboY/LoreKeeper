@@ -9,16 +9,9 @@ RegisterDialog::RegisterDialog(QWidget *parent)
     register_w_ui_->Password_lineEdit->setEchoMode(QLineEdit::Password);
     register_w_ui_->ConfirmPassword_lineEdit->setEchoMode(QLineEdit::Password);
 
-    // 连接信号槽
-    connect(register_w_ui_->Register_pushButton, &QPushButton::clicked, this, &RegisterDialog::OnRegisterClicked);
-    connect(register_w_ui_->Cancel_pushButton, &QPushButton::clicked, this, &RegisterDialog::OnCancelClicked);
+    // 设置连接
+    core::ConnectManager::SetupConnections(this, register_w_ui_.get());
 
-    // 实时验证输入
-    connect(register_w_ui_->UserName_lineEdit, &QLineEdit::textChanged, this, &RegisterDialog::UpdateRegisterButtonState);
-    connect(register_w_ui_->Password_lineEdit, &QLineEdit::textChanged, this, &RegisterDialog::UpdateRegisterButtonState);
-    connect(register_w_ui_->ConfirmPassword_lineEdit, &QLineEdit::textChanged, this, &RegisterDialog::UpdateRegisterButtonState);
-
-    UpdateRegisterButtonState();
 }
 
 void RegisterDialog::OnRegisterClicked() {
@@ -64,14 +57,14 @@ bool RegisterDialog::ValidInput() {
 
     // 验证用户名
     if (username.isEmpty()) {
-        QMessageBox::warning(this, "用户名不能为空", "请输入用户名");
+        QMessageBox::warning(this, "错误", "用户名不能为空，请输入用户名");
         register_w_ui_->UserName_lineEdit->setFocus();
         return false;
     }
 
     // 验证用户名长度
     if (username.length() < 5U) {
-        QMessageBox::warning(this, "用户名长度太短", "用户名长度不能小于5个字符");
+        QMessageBox::warning(this, "提示", "用户名长度太短,用户名长度不能小于5个字符");
         register_w_ui_->UserName_lineEdit->setFocus();
         register_w_ui_->UserName_lineEdit->selectAll();
         return false;
@@ -79,7 +72,7 @@ bool RegisterDialog::ValidInput() {
 
     // 验证用户名重复
     if (CheckUsernameAvailability(username)) {
-        QMessageBox::warning(this, "用户名已存在", "请选择其他用户名");
+        QMessageBox::warning(this, "提示", "用户名已存在，请选择其他用户名");
         register_w_ui_->UserName_lineEdit->setFocus();
         register_w_ui_->UserName_lineEdit->selectAll();
         return false;
@@ -88,7 +81,7 @@ bool RegisterDialog::ValidInput() {
     // 验证用户名格式
     static const QRegularExpression username_regex("^[a-zA-Z0-9_]+$");
     if  (!username_regex.match(username).hasMatch()) {
-        QMessageBox::warning(this, "用户名格式错误", "用户名只能包含字母、数字和下划线");
+        QMessageBox::warning(this, "错误", "用户名格式错误，用户名只能包含字母、数字和下划线");
         register_w_ui_->UserName_lineEdit->setFocus();
         register_w_ui_->UserName_lineEdit->selectAll();
         return false;
@@ -96,13 +89,13 @@ bool RegisterDialog::ValidInput() {
 
     // 验证密码
     if (password.isEmpty()) {
-        QMessageBox::warning(this, "密码不能为空", "请输入密码");
+        QMessageBox::warning(this, "错误", "密码不能为空，请输入密码");
         register_w_ui_->Password_lineEdit->setFocus();
         return false;
     }
 
     if (password.length() < 8U) {
-        QMessageBox::warning(this, "密码长度太短", "密码长度不能小于8个字符");
+        QMessageBox::warning(this, "错误", "密码长度太短，密码长度不能小于8个字符");
         register_w_ui_->Password_lineEdit->setFocus();
         register_w_ui_->Password_lineEdit->selectAll();
         return false;

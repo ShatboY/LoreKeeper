@@ -4,6 +4,7 @@
 #include "ui/ui_forgotpassworddialog.h"
 #include <QDialog>
 #include "../core/AuthManager/AuthManager.h"
+#include "../core/ConnectManager/ConnectManager.h"
 #include <QMessageBox>
 #include <QDebug>
 
@@ -30,7 +31,7 @@ public:
 
     void SetUsername(const QString& username) noexcept;
 
-private slots:
+public slots:
     void OnResetPasswordClicked();
     void OnCancelClicked() noexcept;
     void UpdateResetPasswordButtonState() const;
