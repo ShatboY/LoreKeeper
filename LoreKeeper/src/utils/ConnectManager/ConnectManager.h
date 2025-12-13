@@ -11,12 +11,12 @@
 #include <QLineEdit>
 #include <QMap>
 
-#include "../../app/logindialog.h"
-#include "../../app/registerdialog.h"
-#include "../../app/forgotpassworddialog.h"
-#include "../../app/mainwindow.h"
+#include "../../ui/LoginWindow/logindialog.h"
+#include "../../ui/RegisterWindow/registerdialog.h"
+#include "../../ui/ForgotPasswordWindow/forgotpassworddialog.h"
+#include "../../ui/MainWindow/mainwindow.h"
 
-namespace core {
+namespace utils {
 
 class ConnectManager {
 public:

@@ -11,7 +11,7 @@ ForgotPasswordDialog::ForgotPasswordDialog(QWidget *parent)
     forgotpassword_w_ui_->ConfirmPassword_lineEdit->setEchoMode(QLineEdit::Password);
 
     // 设置连接
-    core::ConnectManager::SetupConnections(this, forgotpassword_w_ui_.get());
+    utils::ConnectManager::SetupConnections(this, forgotpassword_w_ui_.get());
 
 }
 
@@ -24,7 +24,7 @@ void ForgotPasswordDialog::OnResetPasswordClicked() {
     QString new_password = forgotpassword_w_ui_->NewPassword_lineEdit->text();
 
     // 重置密码
-    if (core::AuthMangerGetInstance().ChangePassword(username, new_password)) {
+    if (utils::AuthMangerGetInstance().ChangePassword(username, new_password)) {
         QMessageBox::information(this, "提示", QString("用户 %1 密码重置成功").arg(username));
         accept();
     } else {
@@ -90,7 +90,7 @@ void ForgotPasswordDialog::SetUsername(const QString &username) noexcept {
 }
 
 bool ForgotPasswordDialog::CheckUserExistence(const QString& username) {
-    return core::AuthMangerGetInstance().UserExists(username);
+    return utils::AuthMangerGetInstance().UserExists(username);
 }
 
 void ForgotPasswordDialog::OnCancelClicked() noexcept {

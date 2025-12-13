@@ -7,7 +7,7 @@
 #include <QCryptographicHash>
 #include <QDebug>
 
-namespace core {
+namespace utils {
 AuthManager::AuthManager() {
     LoadUsers();
 
@@ -103,4 +103,4 @@ AuthManager& AuthManager::instance() noexcept {
     return instance;
 }
 
-}
+} // utils

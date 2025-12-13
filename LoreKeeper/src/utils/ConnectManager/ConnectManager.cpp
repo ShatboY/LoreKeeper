@@ -4,7 +4,7 @@
 
 #include "ConnectManager.h"
 
-namespace core {
+namespace utils {
 // 登录窗口连接
 template<>
 void ConnectManager::SetupDialogConnections<LoginDialog, Ui::LoginDialog>(LoginDialog& dialog, Ui::LoginDialog& ui) {
@@ -70,5 +70,33 @@ void ConnectManager::SetupDialogConnections<RegisterDialog, Ui::RegisterDialog>(
     dialog.UpdateRegisterButtonState();
 }
 
-} // core
+// 注册MainWindow连接
+template<>
+void ConnectManager::SetupDialogConnections<MainWindow, Ui::MainWindow>(MainWindow& dialog, Ui::MainWindow& ui) {
+    // 游戏引擎信号
+    QObject::connect(dialog.game_engine_, &core::GameEngine::gameStateChanged, &dialog,
+                     [&dialog]() {dialog.onGameStateChanged();});
+
+    QObject::connect(dialog.game_engine_, &core::GameEngine::playerInfoUpdated, &dialog,
+                     [&dialog]() {dialog.updatePlayerInfo();});
+
+    QObject::connect(dialog.game_engine_, &core::GameEngine::opponentInfoUpdated, &dialog,
+                     [&dialog]() {dialog.updateOpponentInfo();});
+
+    QObject::connect(dialog.game_engine_, &core::GameEngine::gameLogAdded, &dialog,
+                     [&dialog]() {dialog.addGameLog();});
+
+    // 按钮连接
+    QObject::connect(ui.endTurnButton, &QPushButton::clicked, &dialog,
+                     [&dialog]() {dialog.game_engine_->endTurn();});
+
+    QObject::connect(ui.drawCardButton, &QPushButton::clicked, &dialog,
+                     [&dialog]() {dialog.onDrawCardClicked();});
+
+    QObject::connect(ui.surrenderButton, &QPushButton::clicked, &dialog,
+                     [&dialog]() {dialog.onSurrenderClicked();});
+
+}
+
+} // utils
 

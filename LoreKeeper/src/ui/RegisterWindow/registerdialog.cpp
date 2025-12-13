@@ -10,7 +10,7 @@ RegisterDialog::RegisterDialog(QWidget *parent)
     register_w_ui_->ConfirmPassword_lineEdit->setEchoMode(QLineEdit::Password);
 
     // 设置连接
-    core::ConnectManager::SetupConnections(this, register_w_ui_.get());
+    utils::ConnectManager::SetupConnections(this, register_w_ui_.get());
 
 }
 
@@ -23,7 +23,7 @@ void RegisterDialog::OnRegisterClicked() {
     QString password = register_w_ui_->Password_lineEdit->text();
 
     // 注册新用户
-    if (core::AuthMangerGetInstance().RegisterUser(username, password)) {
+    if (utils::AuthMangerGetInstance().RegisterUser(username, password)) {
         QMessageBox::information(this, "注册成功", QString("用户 %1 注册成功！").arg(username));
 
         // 发射注册成功信号
@@ -119,7 +119,7 @@ bool RegisterDialog::ValidInput() {
 }
 
 bool RegisterDialog::CheckUsernameAvailability(const QString& username) {
-    return core::AuthMangerGetInstance().UserExists(username);
+    return utils::AuthMangerGetInstance().UserExists(username);
 }
 
 

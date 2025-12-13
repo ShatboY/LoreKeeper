@@ -3,10 +3,10 @@
 
 #include "ui/ui_logindialog.h"
 #include <QDialog>
-#include "../core/AuthManager/AuthManager.h"
-#include "../core/ConnectManager/ConnectManager.h"
-#include "forgotpassworddialog.h"
-#include "registerdialog.h"
+#include "../../utils/AuthManager/AuthManager.h"
+#include "../../utils/ConnectManager/ConnectManager.h"
+#include "../ForgotPasswordWindow/forgotpassworddialog.h"
+#include "../RegisterWindow/registerdialog.h"
 #include <QSettings>
 #include <QMessageBox>
 #include <QDebug>

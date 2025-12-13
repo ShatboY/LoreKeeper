@@ -14,21 +14,24 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         src/app/main.cpp
-        src/app/logindialog.cpp
-        src/app/logindialog.h
-        src/app/ui/logindialog.ui
-        src/core/AuthManager/AuthManager.cpp
-        src/app/registerdialog.cpp
-        src/app/forgotpassworddialog.cpp
-        src/core/ConnectManager/ConnectManager.cpp
-        src/core/ConnectManager/ConnectManager.h
+        src/ui/LoginWindow/logindialog.cpp
+        src/ui/LoginWindow/logindialog.h
+        src/ui/LoginWindow/logindialog.ui
+        src/utils/AuthManager/AuthManager.cpp
+        src/ui/RegisterWindow/registerdialog.cpp
+        src/ui/ForgotPasswordWindow/forgotpassworddialog.cpp
+        src/utils/ConnectManager/ConnectManager.cpp
+        src/utils/ConnectManager/ConnectManager.h
+        src/core/GameEngine/GameEngine.cpp
+        src/core/PlayerSystem/Player.cpp
+        src/core/CardSystem/Card.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(LoreKeeper
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-            src/app/mainwindow.h src/app/mainwindow.cpp src/app/ui/mainwindow.ui
+            src/ui/MainWindow/mainwindow.h src/ui/MainWindow/mainwindow.cpp src/ui/MainWindow/mainwindow.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET LoreKeeper APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

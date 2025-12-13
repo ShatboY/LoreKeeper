@@ -12,7 +12,7 @@ LoginDialog::LoginDialog(QWidget *parent)
     login_w_ui_->Password_lineEdit->setEchoMode(QLineEdit::Password);
 
     // 设置连接
-    core::ConnectManager::SetupConnections(this, login_w_ui_.get());
+    utils::ConnectManager::SetupConnections(this, login_w_ui_.get());
 
     LoadSavedCredentials();
 
@@ -28,7 +28,7 @@ void LoginDialog::OnLoginClicked() {
     QString username = login_w_ui_->UserName_lineEdit->text().trimmed();
     QString password = login_w_ui_->Password_lineEdit->text();
 
-    core::AuthManager& auth_manager = core::AuthMangerGetInstance();
+    utils::AuthManager& auth_manager = utils::AuthMangerGetInstance();
 
     // 使用AuthManager验证凭据
     if (auth_manager.ValidateUser(username, password)) {
@@ -67,7 +67,7 @@ bool LoginDialog::ValidateInput() {
         return false;
     }
 
-    if (!core::AuthMangerGetInstance().UserExists(username)) {
+    if (!utils::AuthMangerGetInstance().UserExists(username)) {
         QMessageBox::warning(this, "错误", "用户不存在！");
         login_w_ui_->UserName_lineEdit->setFocus();
         login_w_ui_->UserName_lineEdit->selectAll();

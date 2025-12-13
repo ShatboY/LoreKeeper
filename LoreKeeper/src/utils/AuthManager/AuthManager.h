@@ -9,7 +9,7 @@
 #include <QString>
 #include <QMap>
 
-namespace  core {
+namespace  utils {
 
 class AuthManager : public QObject {
     Q_OBJECT

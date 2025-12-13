@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="playInfoGroup">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>240</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>玩家信息</string>
+    </property>
+    <widget class="QLabel" name="playerAvatarLabel">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>30</y>
+       <width>80</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="playerNameLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>120</y>
+       <width>200</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>玩家</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="playerHealthIcon">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>150</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>❤</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="playerHealthLabel">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>150</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20/20</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="playerHealthBar">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>150</y>
+       <width>120</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>20</number>
+     </property>
+     <property name="value">
+      <number>20</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="playerManaIconLabel">
+     <property name="geometry">
+      <rect>
+       <x>17</x>
+       <y>175</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>🔷</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="playerManaLabel">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>175</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>3/5</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="playerManaBar">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>175</y>
+       <width>120</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>10</number>
+     </property>
+     <property name="value">
+      <number>3</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="opponentInfoGroup">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>240</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>对手信息</string>
+    </property>
+    <widget class="QLabel" name="opponentAvatarLabel">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>30</y>
+       <width>60</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="opponentNameLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>200</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>AI巫师</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="opponentHealthIcon">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>❤</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="opponentHealthLabel">
+     <property name="geometry">
+      <rect>
+       <x>45</x>
+       <y>130</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20/20</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="opponentHealthBar">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>130</y>
+       <width>120</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>20</number>
+     </property>
+     <property name="value">
+      <number>20</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="turnInfoGroup">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>400</y>
+      <width>240</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>回合信息</string>
+    </property>
+    <widget class="QLabel" name="turnNumberLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>200</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>第一回合</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timeRemainingLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>65</y>
+       <width>200</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>剩余：60秒</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="turnTimerBar">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>95</y>
+       <width>200</width>
+       <height>15</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>60</number>
+     </property>
+     <property name="value">
+      <number>60</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="deckInfoGroup">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>530</y>
+      <width>240</width>
+      <height>140</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>牌库信息</string>
+    </property>
+    <widget class="QLabel" name="deckSizeLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>200</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>剩余：20张</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="graveyardButton">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>60</y>
+       <width>160</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>查看墓地 (0)</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deckViewButton">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>100</y>
+       <width>160</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>查看牌库</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="opponentBattleGroup">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>760</width>
+      <height>180</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>对手战场</string>
+    </property>
+    <widget class="QFrame" name="opponentSlot1">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="opponentSlot2">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="opponentSlot3">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="opponentSlot4">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="opponentSlot5">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="opponentSlot6">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="opponentSlot7">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="vsSeparatorWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>195</y>
+      <width>760</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="playerScoreLabel">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>5</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>你: 20❤</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="vsLabel">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>5</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>VS</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="opponentScoreLabel">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>5</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>20❤ :对手</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="playerBattleGroup">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>230</y>
+      <width>760</width>
+      <height>180</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>你的战场</string>
+    </property>
+    <widget class="QFrame" name="playerSlot2">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="playerSlot7">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="playerSlot3">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="playerSlot1">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="playerSlot4">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="playerSlot5">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+    <widget class="QFrame" name="playerSlot6">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>40</y>
+       <width>80</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="handCardsGroup">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>420</y>
+      <width>760</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>手牌区域 (0/10)</string>
+    </property>
+    <widget class="QScrollArea" name="handCardsScrollArea">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>25</y>
+       <width>740</width>
+       <height>165</height>
+      </rect>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="handCardsContainer">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1000</width>
+        <height>160</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>1000</width>
+        <height>160</height>
+       </size>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="gameMessageLabel">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>630</y>
+      <width>760</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #16A085;
+color: white;
+font-weight: bold;
+border-radius: 5px;
+border: none;</string>
+    </property>
+    <property name="text">
+     <string>等待游戏开始</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="controlButtonsGroup">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>10</y>
+      <width>220</width>
+      <height>210</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>游戏控制</string>
+    </property>
+    <widget class="QPushButton" name="endTurnButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>200</width>
+       <height>45</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>结束回合</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="drawCardButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>85</y>
+       <width>95</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>抽牌</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="surrenderButton">
+     <property name="geometry">
+      <rect>
+       <x>115</x>
+       <y>85</y>
+       <width>95</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+QPushButton:hover {
+    background-color: #C0392B;
+}
+
+QPushButton:pressed {
+    background-color: #A93226;
+}
+
+QPushButton:disabled {
+    background-color: #7F8C8D;
+}</string>
+     </property>
+     <property name="text">
+      <string>认输</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="viewGraveyardButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>95</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>查看墓地</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="viewDeckButton">
+     <property name="geometry">
+      <rect>
+       <x>115</x>
+       <y>130</y>
+       <width>95</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>查看牌库</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="viewHistoryButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>170</y>
+       <width>95</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>查看记录</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="helpButton">
+     <property name="geometry">
+      <rect>
+       <x>115</x>
+       <y>170</y>
+       <width>95</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>帮助</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="gameLogGroup">
+    <property name="geometry">
+     <rect>
+      <x>1050</x>
+      <y>230</y>
+      <width>220</width>
+      <height>420</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>游戏日志</string>
+    </property>
+    <widget class="QTextEdit" name="gameLogTextEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>25</y>
+       <width>200</width>
+       <height>385</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>等线</family>
+      </font>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

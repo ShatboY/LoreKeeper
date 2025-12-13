@@ -3,8 +3,8 @@
 
 #include "ui/ui_registerdialog.h"
 #include <QDialog>
-#include "../core/AuthManager/AuthManager.h"
-#include "../core/ConnectManager/ConnectManager.h"
+#include "../../utils/AuthManager/AuthManager.h"
+#include "../../utils/ConnectManager/ConnectManager.h"
 #include <QMessageBox>
 #include <QRegularExpression>
 #include <QDebug>

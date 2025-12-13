@@ -3,9 +3,12 @@
 
 #include "ui/ui_mainwindow.h"
 #include <QMainWindow>
-#include "../core/AuthManager/AuthManager.h"
+#include "../../utils/AuthManager/AuthManager.h"
+#include "../../utils/ConnectManager/ConnectManager.h"
+#include "../../core/GameEngine/GameEngine.h"
 #include <QMessageBox>
 #include <QStatusBar>
+
 
 namespace Ui {
 class MainWindow;
@@ -19,13 +22,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() = default;
 
+public:
+    std::unique_ptr<core::GameEngine> game_engine_{nullptr};
+
 private slots:
     void OnLogout();
-    void UpdateWelcomeMessage();
 
 private:
     void SetupUI();
-    void SetupConnections();
 
 private:
     std::unique_ptr<Ui::MainWindow> main_w_ui_{nullptr};
