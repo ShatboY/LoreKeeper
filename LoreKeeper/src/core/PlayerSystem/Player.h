@@ -19,59 +19,60 @@ class Player : public QObject {
 
 public:
     explicit Player(const QString &name, QObject *parent = nullptr);
+    ~Player() = default;
 
     // 基本信息
     QString name() const {
-        return m_name;
+        return name_;
     }
     void setName(const QString &name) {
-        m_name = name;
+        name_ = name;
     }
 
     int32_t health() const {
-        return m_health;
+        return health_value_;
     }
     int32_t maxHealth() const {
-        return m_maxHealth;
+        return maxHealth_value_;
     }
     void setHealth(int32_t health);
     void setMaxHealth(int32_t maxHealth);
 
     int32_t mana() const {
-        return m_mana;
+        return mana_value_;
     }
     int32_t maxMana() const {
-        return m_maxMana;
+        return maxMana_value_;
     }
     void setMana(int32_t mana);
     void setMaxMana(int32_t maxMana);
 
     // 卡牌操作
     void drawCard(int32_t count = 1);
-    void addToHand(Card *card);
+    void addToHand(std::shared_ptr<Card> card);
     bool removeFromHand(int32_t cardId);
     Card *handCard(int32_t cardId) const;
-    QVector<Card *> hand() const {
-        return m_hand;
+    QVector<std::shared_ptr<Card>> hand() const {
+        return handcards_ptr_;
     }
     int32_t handSize() const {
-        return m_hand.size();
+        return handcards_ptr_.size();
     }
 
     // 战场操作
-    bool playCardToField(int32_t cardId, int32_t slotIndex);
-    bool playCardToField(Card *card, int32_t slotIndex);
-    Card *fieldCardAt(int32_t slotIndex) const;
+    bool playCardToField(const int32_t cardId, const int32_t slotIndex);
+    bool playCardToField(const std::shared_ptr<Card> &card, const int32_t slotIndex);
+    const std::shared_ptr<Card> &fieldCardAt(int32_t slotIndex) const;
     QVector<Card *> field() const;
     bool removeFromField(int32_t slotIndex);
     void resetFieldStatus();
 
     // 牌库操作
-    Deck *deck() const {
-        return m_deck;
+    std::unique_ptr<Deck> deck() const {
+        return deck_ptr_;
     }
-    Deck *graveyard() const {
-        return m_graveyard;
+    std::unique_ptr<Deck> graveyard() const {
+        return graveyard_ptr_;
     }
     void setDeck(Deck *deck);
 
@@ -89,7 +90,7 @@ public:
     int32_t deckSize() const;
     int32_t graveyardSize() const;
     bool isAlive() const {
-        return m_health > 0;
+        return health_value_ > 0;
     }
 
 signals:

@@ -9,6 +9,9 @@
 #include <QString>
 #include <QPixmap>
 #include <QVector>
+#include <QPainter>
+#include <QFile>
+#include <QMap>
 
 namespace core {
 
@@ -175,24 +178,24 @@ signals:
     void keywordRemoved(const QString &keyword);
 
 protected:
-    CardData m_data;
+    CardData cardData_;
 
     // 动态状态
-    int32_t m_currentHealth;
-    int32_t m_currentAttack; // 考虑buff
-    bool m_isExhausted;
-    bool m_hasDivineShield;
-    bool m_isStealthed;
+    int32_t currentHealth_;
+    int32_t currentAttack_; // 考虑buff
+    bool isExhausted_;
+    bool hasDivineShield_;
+    bool isStealthed_;
 
     // 临时状态
-    int32_t m_temporaryAttack;
-    int32_t m_temporaryHealth;
+    int32_t temporaryAttack_;
+    int32_t temporaryHealth_;
 
     // 效果
-    QVector<CardEffect *> m_effects;
+    QVector<std::unique_ptr<CardEffect>> cardEffects_;
 
     // 关键词集合（用于快速查找）
-    QSet<QString> m_keywordSet;
+    QSet<QString> keywordSet_;
 };
 
 } // namespace core
