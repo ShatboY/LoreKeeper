@@ -1,8 +1,6 @@
 #include "registerdialog.h"
 
-RegisterDialog::RegisterDialog(QWidget *parent)
-    : QDialog(parent)
-    , register_w_ui_(std::make_unique<Ui::RegisterDialog>()) {
+RegisterDialog::RegisterDialog(QWidget *parent) : QDialog(parent), register_w_ui_(std::make_unique<Ui::RegisterDialog>()) {
     register_w_ui_->setupUi(this);
 
     setWindowTitle("LoreKeeper - 用户注册");
@@ -11,7 +9,6 @@ RegisterDialog::RegisterDialog(QWidget *parent)
 
     // 设置连接
     utils::ConnectManager::SetupConnections(this, register_w_ui_.get());
-
 }
 
 void RegisterDialog::OnRegisterClicked() {
@@ -35,7 +32,7 @@ void RegisterDialog::OnRegisterClicked() {
     }
 }
 
-void RegisterDialog::OnCancelClicked() noexcept{
+void RegisterDialog::OnCancelClicked() noexcept {
     reject();
 }
 
@@ -45,7 +42,7 @@ void RegisterDialog::UpdateRegisterButtonState() const {
     QString confirmPassword = register_w_ui_->ConfirmPassword_lineEdit->text();
 
     register_w_ui_->Register_pushButton->setEnabled(
-            (!username.isEmpty()) && (!password.isEmpty()) && (!confirmPassword.isEmpty()));
+        (!username.isEmpty()) && (!password.isEmpty()) && (!confirmPassword.isEmpty()));
 
     register_w_ui_->Register_pushButton->setDefault(true);
 }
@@ -80,7 +77,7 @@ bool RegisterDialog::ValidInput() {
 
     // 验证用户名格式
     static const QRegularExpression username_regex("^[a-zA-Z0-9_]+$");
-    if  (!username_regex.match(username).hasMatch()) {
+    if (!username_regex.match(username).hasMatch()) {
         QMessageBox::warning(this, "错误", "用户名格式错误，用户名只能包含字母、数字和下划线");
         register_w_ui_->UserName_lineEdit->setFocus();
         register_w_ui_->UserName_lineEdit->selectAll();
@@ -118,19 +115,6 @@ bool RegisterDialog::ValidInput() {
     return true;
 }
 
-bool RegisterDialog::CheckUsernameAvailability(const QString& username) {
+bool RegisterDialog::CheckUsernameAvailability(const QString &username) {
     return utils::AuthMangerGetInstance().UserExists(username);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

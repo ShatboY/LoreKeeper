@@ -21,16 +21,16 @@ namespace utils {
 class ConnectManager {
 public:
     // 统一的连接设置接口
-    template<typename DialogType, typename UiClass>
-    static void SetupConnections(DialogType* dialog, UiClass* ui) {
+    template <typename DialogType, typename UiClass>
+    static void SetupConnections(DialogType *dialog, UiClass *ui) {
         SetupDialogConnections(*dialog, *ui);
     }
 
 private:
-    template<typename DialogType, typename UiClass>
-    static void SetupDialogConnections(DialogType& dialog, UiClass& ui);
+    template <typename DialogType, typename UiClass>
+    static void SetupDialogConnections(DialogType &dialog, UiClass &ui);
 };
 
-} // core
+} // namespace utils
 
-#endif //LOREKEEPER_CONNECTMANAGER_H
+#endif // LOREKEEPER_CONNECTMANAGER_H

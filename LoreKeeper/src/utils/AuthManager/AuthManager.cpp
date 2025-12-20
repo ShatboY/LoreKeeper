@@ -69,7 +69,6 @@ bool AuthManager::ValidateUser(const QString &username, const QString &password)
 
     // 这里应该使用加密哈希
     return (store_password == password);
-
 }
 
 bool AuthManager::ChangePassword(const QString &username, const QString &new_password) {
@@ -98,9 +97,9 @@ bool AuthManager::UserExists(const QString &username) const {
     return m_users_.contains(username);
 }
 
-AuthManager& AuthManager::instance() noexcept {
+AuthManager &AuthManager::instance() noexcept {
     static AuthManager instance;
     return instance;
 }
 
-} // utils
+} // namespace utils

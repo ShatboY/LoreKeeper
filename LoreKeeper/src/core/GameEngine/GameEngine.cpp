@@ -6,11 +6,9 @@
 
 namespace core {
 
-
-GameEngine& GameEngine::instance() noexcept {
+GameEngine &GameEngine::instance() noexcept {
     static GameEngine instance;
     return instance;
 }
 
-
-}
+} // namespace core

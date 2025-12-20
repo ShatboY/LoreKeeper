@@ -1,9 +1,6 @@
 #include "logindialog.h"
 
-LoginDialog::LoginDialog(QWidget *parent)
-    : QDialog(parent)
-    , login_w_ui_(std::make_unique<Ui::LoginDialog>())
-{
+LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent), login_w_ui_(std::make_unique<Ui::LoginDialog>()) {
     login_w_ui_->setupUi(this);
 
     setWindowTitle("LoreKeeper - Login");
@@ -15,7 +12,6 @@ LoginDialog::LoginDialog(QWidget *parent)
     utils::ConnectManager::SetupConnections(this, login_w_ui_.get());
 
     LoadSavedCredentials();
-
 }
 
 LoginDialog::~LoginDialog() = default;
@@ -28,7 +24,7 @@ void LoginDialog::OnLoginClicked() {
     QString username = login_w_ui_->UserName_lineEdit->text().trimmed();
     QString password = login_w_ui_->Password_lineEdit->text();
 
-    utils::AuthManager& auth_manager = utils::AuthMangerGetInstance();
+    utils::AuthManager &auth_manager = utils::AuthMangerGetInstance();
 
     // 使用AuthManager验证凭据
     if (auth_manager.ValidateUser(username, password)) {
@@ -50,7 +46,6 @@ void LoginDialog::OnLoginClicked() {
     } else {
         QMessageBox::warning(this, "错误", "用户名或密码错误！");
     }
-
 }
 
 bool LoginDialog::ValidateInput() {
@@ -80,9 +75,9 @@ void LoginDialog::OnRegisterClicked() {
     RegisterDialog register_dialog(this);
 
     // 连接注册成功信号，自动填充用户名
-//    connect(&register_dialog, &RegisterDialog::UserRegistered, [this](const QString& username) {
-//        login_w_ui_->UserName_lineEdit->setText(username);
-//    });
+    //    connect(&register_dialog, &RegisterDialog::UserRegistered, [this](const QString& username) {
+    //        login_w_ui_->UserName_lineEdit->setText(username);
+    //    });
 
     if (register_dialog.exec() == QDialog::Accepted) {
         QMessageBox::information(this, "提示", "注册成功！请使用新用户名和密码登录。");
@@ -107,7 +102,6 @@ void LoginDialog::OnForgotPasswordClicked() {
         login_w_ui_->Password_lineEdit->clear();
         login_w_ui_->UserName_lineEdit->setFocus();
     }
-
 }
 
 void LoginDialog::UpdateLoginButtonState() {
@@ -141,7 +135,3 @@ void LoginDialog::SaveCredentials() {
     settings.setValue("username", login_w_ui_->UserName_lineEdit->text().trimmed());
     settings.setValue("password", login_w_ui_->Password_lineEdit->text());
 }
-
-
-
-

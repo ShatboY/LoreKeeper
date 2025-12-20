@@ -9,61 +9,48 @@
 #include <QString>
 #include <QMap>
 
-namespace  utils {
+namespace utils {
 
 class AuthManager : public QObject {
     Q_OBJECT
 public:
-    static AuthManager& instance() noexcept;
+    static AuthManager &instance() noexcept;
 
     AuthManager();
 
-    AuthManager(const AuthManager&) = delete;
+    AuthManager(const AuthManager &) = delete;
 
-    AuthManager& operator=(const AuthManager&) = delete;
+    AuthManager &operator=(const AuthManager &) = delete;
 
-    AuthManager(AuthManager&&) = delete;
+    AuthManager(AuthManager &&) = delete;
 
-    AuthManager& operator=(AuthManager&&) = delete;
+    AuthManager &operator=(AuthManager &&) = delete;
 
     ~AuthManager() = default;
 
-    bool ValidateUser(const QString& username, const QString& password);
-    void SetCurrentUser(const QString& username) noexcept;
+    bool ValidateUser(const QString &username, const QString &password);
+    void SetCurrentUser(const QString &username) noexcept;
     QString GetCurrentUser() const;
     void ClearCurrentUser() noexcept;
 
     // 用户管理方法
-    bool RegisterUser(const QString& username, const QString& password);
-    bool ChangePassword(const QString& username, const QString& new_password);
-    bool UserExists(const QString& username) const;
+    bool RegisterUser(const QString &username, const QString &password);
+    bool ChangePassword(const QString &username, const QString &new_password);
+    bool UserExists(const QString &username) const;
 
 private:
-
     void LoadUsers();
     void SaveUsers();
 
 private:
     QMap<QString, QString> m_users_;
     QString m_current_user_;
-
 };
 
-static AuthManager& AuthMangerGetInstance() noexcept {
+static AuthManager &AuthMangerGetInstance() noexcept {
     return AuthManager::instance();
 }
 
-}
+} // namespace utils
 
-
-
-
-
-
-
-
-
-
-
-
-#endif //LOREKEEPER_AUTHMANAGER_H
+#endif // LOREKEEPER_AUTHMANAGER_H

@@ -1,9 +1,6 @@
 #include "forgotpassworddialog.h"
 
-ForgotPasswordDialog::ForgotPasswordDialog(QWidget *parent)
-    : QDialog(parent)
-    , forgotpassword_w_ui_(std::make_unique<Ui::ForgotPasswordDialog>())
-{
+ForgotPasswordDialog::ForgotPasswordDialog(QWidget *parent) : QDialog(parent), forgotpassword_w_ui_(std::make_unique<Ui::ForgotPasswordDialog>()) {
     forgotpassword_w_ui_->setupUi(this);
 
     setWindowTitle("LoreKeeper - 忘记密码");
@@ -12,7 +9,6 @@ ForgotPasswordDialog::ForgotPasswordDialog(QWidget *parent)
 
     // 设置连接
     utils::ConnectManager::SetupConnections(this, forgotpassword_w_ui_.get());
-
 }
 
 void ForgotPasswordDialog::OnResetPasswordClicked() {
@@ -89,7 +85,7 @@ void ForgotPasswordDialog::SetUsername(const QString &username) noexcept {
     forgotpassword_w_ui_->NewPassword_lineEdit->setFocus();
 }
 
-bool ForgotPasswordDialog::CheckUserExistence(const QString& username) {
+bool ForgotPasswordDialog::CheckUserExistence(const QString &username) {
     return utils::AuthMangerGetInstance().UserExists(username);
 }
 
@@ -103,7 +99,7 @@ void ForgotPasswordDialog::UpdateResetPasswordButtonState() const {
     QString confirm_password = forgotpassword_w_ui_->ConfirmPassword_lineEdit->text();
 
     forgotpassword_w_ui_->ResetPassword_pushButton->setEnabled(
-            (!username.isEmpty()) && (!new_password.isEmpty()) && (!confirm_password.isEmpty()));
+        (!username.isEmpty()) && (!new_password.isEmpty()) && (!confirm_password.isEmpty()));
 
     forgotpassword_w_ui_->ResetPassword_pushButton->setDefault(true);
 }

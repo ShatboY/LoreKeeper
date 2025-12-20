@@ -8,6 +8,7 @@
 #include <QObject>
 #include <QString>
 #include <QPixmap>
+#include <QVector>
 
 namespace core {
 
@@ -15,80 +16,185 @@ class Card : public QObject {
     Q_OBJECT
 
 public:
-    enum CardType {
-        CREATURE,
-        SPELL,
-        ENCHANTMENT,
-        ARTIFACT
+    // 卡牌类型
+    enum CardType : int32_t {
+        TYPE_CREATURE = 0, // 生物卡牌
+        TYPE_SPELL,        // 法术卡牌
+        TYPE_ENCHANTMENT,  // 魔法增强卡牌
+        TYPE_ARTIFACT,     // 神器卡牌
+        TYPE_WEAPON        // 武器卡牌
+    };
+    // 稀有度
+    enum Rarity : int32_t {
+        RARITY_COMMON = 0, // 普通
+        RARITY_UNCOMMON,   // 不常见
+        RARITY_RARE,       // 稀有
+        RARITY_EPIC,       // 史诗
+        RARITY_LEGENDARY   // 传说
+    };
+    // 卡牌职业
+    enum CardClass : int32_t {
+        CLASS_NEUTRAL = 0, // 中立职业
+        CLASS_MAGE,        // 法师职业
+        CLASS_WARRIOR,     // 战士职业
+        CLASS_PRIEST,      // 牧师职业
+        CLASS_ROGUE,       // 潜行者职业
+        CLASS_HUNTER,      // 猎人职业
+        CLASS_WARLOCK,     // 术士职业
+        CLASS_DRUID,       // 德鲁伊职业
+        CLASS_SHAMAN,      // 萨满职业
+        CLASS_PALADIN      // 圣骑士职业
     };
 
-    enum Rarity {
-        COMMON,
-        UNCOMMON,
-        RARE,
-        EPIC,
-        LEGENDARY
+    struct CardData {
+        int32_t id;
+        QString name;
+        QString description;
+        CardType type;
+        Rarity rarity;
+        CardClass cardClass;
+        int32_t manaCost;
+        int32_t attack;
+        int32_t health;
+        QVector<QString> keywords;
+        QString effectScript;
+        QString imagePath;
     };
 
-    Card(int id, const QString& name, CardType type,
-         const QString& description, Rarity rarity, int manaCost,
-         QObject* parent = nullptr);
+    Card(const CardData &data, QObject *parent = nullptr);
+    ~Card() = default;
 
     // 基本信息
-    int id() const;
-    QString name() const;
-    QString description() const;
-    CardType type() const;
-    Rarity rarity() const;
-    int manaCost() const;
+    int32_t id() const {
+        return m_data.id;
+    }
+    QString name() const {
+        return m_data.name;
+    }
+    QString description() const {
+        return m_data.description;
+    }
+    CardType type() const {
+        return m_data.type;
+    }
+    Rarity rarity() const {
+        return m_data.rarity;
+    }
+    CardClass cardClass() const {
+        return m_data.cardClass;
+    }
+    int32_t manaCost() const {
+        return m_data.manaCost;
+    }
 
-    // 生物卡特有属性
-    bool isCreature() const;
-    int attack() const;
-    int defense() const;
-    bool canAttack() const;
-    bool hasTaunt() const;
-    bool hasCharge() const;
-    bool hasDivineShield() const;
+    // 生物属性
+    bool isCreature() const {
+        return m_data.type == TYPE_CREATURE;
+    }
+    int32_t attack() const {
+        return m_data.attack;
+    }
+    int32_t health() const {
+        return m_data.health;
+    }
+    int32_t currentHealth() const {
+        return m_currentHealth;
+    }
+
+    // 关键词检查
+    bool hasKeyword(const QString &keyword) const;
+    bool hasTaunt() const {
+        return hasKeyword("taunt");
+    }
+    bool hasCharge() const {
+        return hasKeyword("charge");
+    }
+    bool hasDivineShield() const {
+        return hasKeyword("divine_shield");
+    }
+    bool hasWindfury() const {
+        return hasKeyword("windfury");
+    }
+    bool hasStealth() const {
+        return hasKeyword("stealth");
+    }
+    bool hasPoisonous() const {
+        return hasKeyword("poisonous");
+    }
+    bool hasLifesteal() const {
+        return hasKeyword("lifesteal");
+    }
+    bool hasRush() const {
+        return hasKeyword("rush");
+    }
 
     // 状态
-    bool isExhausted() const;
-    void setExhausted(bool exhausted);
+    bool isExhausted() const {
+        return m_isExhausted;
+    }
+    void setExhausted(bool exhausted) {
+        m_isExhausted = exhausted;
+    }
+    bool canAttack() const;
+    bool canAttackImmediately() const;
 
     // 视觉效果
     QPixmap cardImage() const;
     QString cardFrameColor() const;
+    QString rarityColor() const;
+    QString classColor() const;
+
+    // 战斗操作
+    void takeDamage(int32_t damage);
+    void heal(int32_t amount);
+    void buff(int32_t attackBonus, int32_t healthBonus);
+    void addKeyword(const QString &keyword);
+    void removeKeyword(const QString &keyword);
+
+    // 效果系统
+    void triggerEffect(const QString &event, Card *source = nullptr, Card *target = nullptr);
+    void addEffect(CardEffect *effect);
+    void removeEffect(CardEffect *effect);
+
+    // 临时属性（用于回合内效果）
+    void setTemporaryAttack(int32_t attack) {
+        m_temporaryAttack = attack;
+    }
+    void setTemporaryHealth(int32_t health) {
+        m_temporaryHealth = health;
+    }
 
 signals:
     void cardPlayed();
-    void cardAttacked();
+    void cardAttacked(Card *target);
+    void cardDamaged(int32_t damage);
+    void cardHealed(int32_t amount);
     void cardDestroyed();
+    void cardBuffed(int32_t attack, int32_t health);
+    void keywordAdded(const QString &keyword);
+    void keywordRemoved(const QString &keyword);
 
 protected:
-    int m_id;
-    QString m_name;
-    QString m_description;
-    CardType m_type;
-    Rarity m_rarity;
-    int m_manaCost;
+    CardData m_data;
 
-    // 生物卡属性
-    int m_attack;
-    int m_defense;
-    int m_currentDefense;
-
-    // 状态标记
+    // 动态状态
+    int32_t m_currentHealth;
+    int32_t m_currentAttack; // 考虑buff
     bool m_isExhausted;
-    bool m_hasTaunt;
-    bool m_hasCharge;
     bool m_hasDivineShield;
+    bool m_isStealthed;
 
-    // 视觉效果
-    QPixmap m_cardImage;
+    // 临时状态
+    int32_t m_temporaryAttack;
+    int32_t m_temporaryHealth;
+
+    // 效果
+    QVector<CardEffect *> m_effects;
+
+    // 关键词集合（用于快速查找）
+    QSet<QString> m_keywordSet;
 };
 
-}
+} // namespace core
 
-
-
-#endif //LOREKEEPER_CARD_H
+#endif // LOREKEEPER_CARD_H

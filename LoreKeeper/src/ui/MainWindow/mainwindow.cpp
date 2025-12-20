@@ -1,9 +1,6 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , main_w_ui_(std::make_unique<Ui::MainWindow>())
-{
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), main_w_ui_(std::make_unique<Ui::MainWindow>()) {
     main_w_ui_->setupUi(this);
 
     // 初始化游戏引擎
@@ -23,7 +20,6 @@ void MainWindow::SetupUI() {
     statusBar()->showMessage("欢迎来到LoreKeeper！");
 
     // 这里可以添加更多UI初始化代码
-
 }
 
 void MainWindow::OnLogout() {
@@ -34,6 +30,3 @@ void MainWindow::OnLogout() {
         close();
     }
 }
-
-
-

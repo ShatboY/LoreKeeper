@@ -13,25 +13,24 @@ namespace Ui {
 class RegisterDialog;
 }
 
-class RegisterDialog : public QDialog
-{
+class RegisterDialog : public QDialog {
     Q_OBJECT
 
 public:
     explicit RegisterDialog(QWidget *parent = nullptr);
 
-    RegisterDialog(const RegisterDialog&) = delete;
+    RegisterDialog(const RegisterDialog &) = delete;
 
-    RegisterDialog& operator=(const RegisterDialog&) = delete;
+    RegisterDialog &operator=(const RegisterDialog &) = delete;
 
-    RegisterDialog(RegisterDialog&&) = delete;
+    RegisterDialog(RegisterDialog &&) = delete;
 
-    RegisterDialog& operator=(RegisterDialog&&) = delete;
+    RegisterDialog &operator=(RegisterDialog &&) = delete;
 
     ~RegisterDialog() = default;
 
-    signals:
-        void UserRegistered(const QString& username);
+signals:
+    void UserRegistered(const QString &username);
 
 public slots:
     void OnRegisterClicked();
@@ -40,7 +39,7 @@ public slots:
 
 private:
     bool ValidInput();
-    static bool CheckUsernameAvailability(const QString& username);
+    static bool CheckUsernameAvailability(const QString &username);
 
 private:
     std::unique_ptr<Ui::RegisterDialog> register_w_ui_{nullptr};

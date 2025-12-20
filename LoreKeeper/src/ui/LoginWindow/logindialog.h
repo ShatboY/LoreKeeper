@@ -17,8 +17,7 @@ class LoginDialog;
 }
 QT_END_NAMESPACE
 
-class LoginDialog : public QDialog
-{
+class LoginDialog : public QDialog {
     Q_OBJECT
 
 public:
@@ -38,6 +37,5 @@ private:
 
 private:
     std::unique_ptr<Ui::LoginDialog> login_w_ui_;
-
 };
 #endif // LOGINDIALOG_H
