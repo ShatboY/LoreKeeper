@@ -15,6 +15,7 @@
 #include "../../ui/RegisterWindow/registerdialog.h"
 #include "../../ui/ForgotPasswordWindow/forgotpassworddialog.h"
 #include "../../ui/MainWindow/mainwindow.h"
+#include "../../core/GameEngine/GameEngine.h"
 
 namespace utils {
 
@@ -25,10 +26,18 @@ public:
     static void SetupConnections(DialogType *dialog, UiClass *ui) {
         SetupDialogConnections(*dialog, *ui);
     }
+    // 重载版本，用于不需要UI参数的对象
+    template <typename ClassType>
+    static void SetupConnections(ClassType *class) {
+        SetupDialogConnections(*class);
+    }
 
 private:
     template <typename DialogType, typename UiClass>
     static void SetupDialogConnections(DialogType &dialog, UiClass &ui);
+
+    template <typename ClassType>
+    staticvoid SetupDialogConnections(ClassType &class);
 };
 
 } // namespace utils

@@ -95,4 +95,19 @@ void ConnectManager::SetupDialogConnections<MainWindow, Ui::MainWindow>(MainWind
                      [&dialog]() { dialog.onSurrenderClicked(); });
 }
 
+// 注册计时器相关连接
+template <>
+void ConnectManager::SetupDialogConnections<GameEngine>(GameEngine &gameEngine) {
+    // 连接计时器信号
+    QObject::connect(gameEngine.turnTimer_, &QTimer::timeout, &gameEngine, [&dialog]() {
+        gameEngine.timeRemaining_--;
+        emit gameEngine.updateTurnTimer(gameEngine.timeRemaining_);
+
+        if (gameEngine.timeRemaining_ <= 0) {
+            gameEngine.addGameLog("时间到，自动结束回合");
+            gameEngine.endTurn();} });
+
+    QObject::connect(gameEngine.aiTimer_, &QTimer::timeout, &gameEngine,
+                     [&gameEngine]() { gameEngine.processAITurn(); });
+}
 } // namespace utils

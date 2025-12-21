@@ -11,6 +11,7 @@
 #include <QMap>
 #include "../PlayerSystem/Player.h"
 #include "../CardSystem/Card.h"
+#include "../../utils/ConnectManager/ConnectManager.h"
 #include "Deck.h"
 
 namespace core {
@@ -121,7 +122,7 @@ signals:
     void cardMovedToGraveyard(Card *card, bool isPlayerCard);
 
     // 游戏事件
-    void damageDealt(Card *source, Card *target, int32_t amount);
+    void damageDealt(const std::shared_ptr<Card> &source, const std::shared_ptr<Card> &target, const int32_t amount);
     void cardPlayed(Card *card, bool isPlayerCard);
     void attackPerformed(Card *attacker, Card *target);
     void gameLogAdded(const QString &log, bool isImportant = false);
@@ -146,7 +147,7 @@ private:
     void drawInitialHands();
 
     // 回合管理
-    void startTurn(Player *player);
+    void startTurn(std::unique_ptr<Player> &player);
     void endCurrentTurn();
     void nextPhase();
     void processBeginPhase();
@@ -160,8 +161,8 @@ private:
     void aiAttack();
 
     // 游戏逻辑
-    void resolveAttack(Card *attacker, Card *defender);
-    void resolveDamage(Card *source, Card *target, int damage);
+    void resolveAttack(const std::shared_ptr<Card> &attacker, const std::shared_ptr<Card> &defender);
+    void resolveDamage(Card *source, Card *target, int32_t damage);
     void checkDeath();
     void checkGameEnd();
     void triggerCardEffects(Card *card, const QString &event);
@@ -172,28 +173,28 @@ private:
 
 private:
     // 游戏状态
-    GameState m_gameState;
-    GamePhase m_currentPhase;
-    GameConfig m_config;
+    GameState gameState_;
+    GamePhase currentPhase_;
+    GameConfig config_;
 
     // 游戏对象
-    Player *m_player;
-    Player *m_opponent;
-    Player *m_currentPlayer;
+    std::unique_ptr<Player> player_;
+    std::unique_ptr<Player> opponent_;
+    Player *currentPlayer_;
 
     // 时间管理
-    QTimer *m_turnTimer;
-    QTimer *m_aiTimer;
-    int m_timeRemaining;
-    int m_turnNumber;
+    std::unique_ptr<QTimer> turnTimer_;
+    std::unique_ptr<QTimer> aiTimer_;
+    int32_t timeRemaining_;
+    int32_t turnNumber_;
 
     // 游戏记录
-    QStack<QString> m_actionHistory;
-    QStringList m_gameLog;
+    QStack<QString> actionHistory_;
+    QStringList gameLog_;
 
     // 临时数据
-    bool m_isProcessing;
-    QMap<int, QVector<CardEffect>> m_triggeredEffects;
+    bool isProcessing_;
+    QMap<int32_t, QVector<CardEffect>> triggeredEffects_;
 };
 
 static GameEngine &GameEngineGetInstance() noexcept {
