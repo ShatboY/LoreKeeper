@@ -25,6 +25,11 @@ set(PROJECT_SOURCES
         src/core/GameEngine/GameEngine.cpp
         src/core/PlayerSystem/Player.cpp
         src/core/CardSystem/Card.cpp
+        src/core/CardSystem/Deck.h
+        src/utils/DatabaseManager/DatabaseManager.h
+        src/utils/DatabaseManager/BaseManager/BaseManager.h
+        src/utils/DatabaseManager/BaseManager/BaseManager.cpp
+        src/utils/DatabaseManager/BaseManager/DatabaseManager.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

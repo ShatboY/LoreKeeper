@@ -1,6 +1,7 @@
 //
 // Created by bobobo on 2025/12/13.
 //
+#pragma once
 
 #ifndef LOREKEEPER_CARD_H
 #define LOREKEEPER_CARD_H

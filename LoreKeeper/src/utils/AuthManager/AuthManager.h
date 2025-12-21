@@ -1,6 +1,7 @@
 //
 // Created by bobobo on 2025/11/30.
 //
+#pragma once
 
 #ifndef LOREKEEPER_AUTHMANAGER_H
 #define LOREKEEPER_AUTHMANAGER_H

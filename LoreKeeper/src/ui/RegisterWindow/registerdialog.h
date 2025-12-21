@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef REGISTERDIALOG_H
 #define REGISTERDIALOG_H
 

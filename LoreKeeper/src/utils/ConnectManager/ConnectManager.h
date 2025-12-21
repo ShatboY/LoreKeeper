@@ -1,6 +1,7 @@
 //
 // Created by bobobo on 2025/12/4.
 //
+#pragma once
 
 #ifndef LOREKEEPER_CONNECTMANAGER_H
 #define LOREKEEPER_CONNECTMANAGER_H
