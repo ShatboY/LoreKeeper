@@ -1,0 +1,8 @@
+//
+// Created by bobobo on 2025/12/21.
+//
+
+#ifndef LOREKEEPER_CARDEFFECT_H
+#define LOREKEEPER_CARDEFFECT_H
+
+#endif // LOREKEEPER_CARDEFFECT_H
