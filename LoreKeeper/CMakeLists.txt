@@ -30,6 +30,9 @@ set(PROJECT_SOURCES
         src/utils/DatabaseManager/BaseManager/BaseManager.h
         src/utils/DatabaseManager/BaseManager/BaseManager.cpp
         src/utils/DatabaseManager/BaseManager/DatabaseManager.cpp
+        src/utils/DatabaseManager/CardDatabaseManager/CardDatabaseManager.cpp
+        src/utils/DatabaseManager/DeckManager/DeckManager.h
+        src/utils/DatabaseManager/GameConfigManager/GameConfigManager.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
