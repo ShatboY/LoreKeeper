@@ -26,13 +26,21 @@ set(PROJECT_SOURCES
         src/core/PlayerSystem/Player.cpp
         src/core/CardSystem/Card.cpp
         src/core/CardSystem/Deck.h
-        src/utils/DatabaseManager/DatabaseManager.h
         src/utils/DatabaseManager/BaseManager/BaseManager.h
         src/utils/DatabaseManager/BaseManager/BaseManager.cpp
         src/utils/DatabaseManager/BaseManager/DatabaseManager.cpp
         src/utils/DatabaseManager/CardDatabaseManager/CardDatabaseManager.cpp
         src/utils/DatabaseManager/DeckManager/DeckManager.h
         src/utils/DatabaseManager/GameConfigManager/GameConfigManager.h
+        src/utils/DatabaseManager/PlayerDataManager/PlayerDataManager.h
+        src/utils/DatabaseManager/ResourceManager/ResourceManager.h
+        src/core/CardSystem/CardEffect.h
+        src/core/RuleSystem/RuleValidator.cpp
+        src/core/AISystem/AIPlayer.cpp
+        src/ui/widgets/CardWidget/CardWidget.h
+        src/ui/widgets/CardWidget/CardWidget.cpp
+        src/ui/widgets/ClickableFrame/ClickableFrame.h
+        src/ui/widgets/ClickableFrame/ClickableFrame.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

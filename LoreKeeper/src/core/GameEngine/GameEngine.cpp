@@ -72,7 +72,7 @@ void GameEngine::startNewGame(const QString &playerName) {
     // 开始第一回合
     gameState_ = PLAYER_TURN_START;
     turnNumber_ = 1;
-    startTurn(player_.get());
+    startTurn(player_);
 
     addGameLog("游戏开始！", true);
     emit gameStateChanged(gameState_);
@@ -187,10 +187,10 @@ void GameEngine::startTurn(std::unique_ptr<core::Player> &player) {
     }
 
     // 重置法力值
-    player_->setMana(player_->maxMana()) :
+    player_->setMana(player_->maxMana());
 
-        // 重置生物状态
-        player_->resetFieldStatus();
+    // 重置生物状态
+    player_->resetFieldStatus();
 
     // 抽牌
     player_->drawCard();
@@ -252,7 +252,8 @@ void GameEngine::processAITurn() {
                 if (!opponent_->fieldCardAt(i)) {
                     opponent_->playCardToField(card->id(), i);
                     availableMana -= card->manaCost();
-                    addGameLog(QString("对手打出: %1").arg(card->name()))； break;
+                    addGameLog(QString("对手打出: %1").arg(card->name()));
+                    break;
                 }
             }
         }

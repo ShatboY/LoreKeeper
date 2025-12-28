@@ -29,8 +29,8 @@ public:
     }
     // 重载版本，用于不需要UI参数的对象
     template <typename ClassType>
-    static void SetupConnections(ClassType *class) {
-        SetupDialogConnections(*class);
+    static void SetupConnections(ClassType *classtype) {
+        SetupDialogConnections(*classtype);
     }
 
 private:
@@ -38,7 +38,7 @@ private:
     static void SetupDialogConnections(DialogType &dialog, UiClass &ui);
 
     template <typename ClassType>
-    staticvoid SetupDialogConnections(ClassType &class);
+    static void SetupDialogConnections(ClassType &classtype);
 };
 
 } // namespace utils

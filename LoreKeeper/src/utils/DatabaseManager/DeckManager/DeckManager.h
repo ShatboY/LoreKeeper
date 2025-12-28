@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseManager.h"
+#include "../BaseManager/DatabaseManager.h"
 #include <QMap>
 #include <QString>
 #include <QDateTime>

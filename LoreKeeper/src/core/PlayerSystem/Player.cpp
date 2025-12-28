@@ -3,7 +3,7 @@
 //
 
 #include "Player.h"
-#include "Logger.h"
+//#include "Logger.h"
 #include <algorithm>
 
 namespace core {

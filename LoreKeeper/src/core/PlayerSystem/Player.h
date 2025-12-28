@@ -9,7 +9,7 @@
 #include <QVector>
 #include <QMap>
 #include "../GameEngine/GameEngine.h"
-#include "Deck.h"
+#include "../CardSystem/Deck.h"
 #include "../CardSystem/Card.h"
 
 namespace core {
@@ -68,10 +68,10 @@ public:
     void resetFieldStatus();
 
     // 牌库操作
-    std::unique_ptr<Deck> deck() const {
+    const std::unique_ptr<Deck>& deck() const {
         return deck_ptr_;
     }
-    std::unique_ptr<Deck> graveyard() const {
+    const std::unique_ptr<Deck>& graveyard() const {
         return graveyard_ptr_;
     }
     void setDeck(Deck *deck);

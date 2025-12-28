@@ -13,6 +13,7 @@
 #include <QPainter>
 #include <QFile>
 #include <QMap>
+#include <QSet>
 
 namespace core {
 
@@ -70,39 +71,39 @@ public:
 
     // 基本信息
     int32_t id() const {
-        return m_data.id;
+        return cardData_.id;
     }
     QString name() const {
-        return m_data.name;
+        return cardData_.name;
     }
     QString description() const {
-        return m_data.description;
+        return cardData_.description;
     }
     CardType type() const {
-        return m_data.type;
+        return cardData_.type;
     }
     Rarity rarity() const {
-        return m_data.rarity;
+        return cardData_.rarity;
     }
     CardClass cardClass() const {
-        return m_data.cardClass;
+        return cardData_.cardClass;
     }
     int32_t manaCost() const {
-        return m_data.manaCost;
+        return cardData_.manaCost;
     }
 
     // 生物属性
     bool isCreature() const {
-        return m_data.type == TYPE_CREATURE;
+        return cardData_.type == TYPE_CREATURE;
     }
     int32_t attack() const {
-        return m_data.attack;
+        return cardData_.attack;
     }
     int32_t health() const {
-        return m_data.health;
+        return cardData_.health;
     }
     int32_t currentHealth() const {
-        return m_currentHealth;
+        return currentHealth_;
     }
 
     // 关键词检查
@@ -134,10 +135,10 @@ public:
 
     // 状态
     bool isExhausted() const {
-        return m_isExhausted;
+        return isExhausted_;
     }
     void setExhausted(bool exhausted) {
-        m_isExhausted = exhausted;
+        isExhausted_ = exhausted;
     }
     bool canAttack() const;
     bool canAttackImmediately() const;
@@ -162,10 +163,10 @@ public:
 
     // 临时属性（用于回合内效果）
     void setTemporaryAttack(int32_t attack) {
-        m_temporaryAttack = attack;
+        temporaryAttack_ = attack;
     }
     void setTemporaryHealth(int32_t health) {
-        m_temporaryHealth = health;
+        temporaryHealth_ = health;
     }
 
 signals:

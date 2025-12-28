@@ -13,7 +13,7 @@ namespace utils {
 class BaseManager : public QObject {
     Q_OBJECT
 
-protected:
+public:
     explicit BaseManager(QObject *parent = nullptr);
 
     // 共用的工具方法
@@ -32,7 +32,7 @@ protected:
         return initialized_;
     }
 
-    void setInitialized(bool initialized) {
+    void setInitialized(const bool initialized) {
         initialized_ = initialized;
     }
 
@@ -41,5 +41,7 @@ protected:
     bool initialized_ = false;
     mutable QMutex mutex_;
 };
+
+
 
 } // namespace utils

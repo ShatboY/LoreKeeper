@@ -13,7 +13,7 @@
 #include "../PlayerSystem/Player.h"
 #include "../CardSystem/Card.h"
 #include "../../utils/ConnectManager/ConnectManager.h"
-#include "Deck.h"
+#include "../CardSystem/Deck.h"
 
 namespace core {
 
@@ -71,25 +71,25 @@ public:
 
     // 查询接口
     GameState currentState() const {
-        return m_gameState;
+        return gameState_;
     }
     GamePhase currentPhase() const {
-        return m_currentPhase;
+        return currentPhase_;
     }
     Player *currentPlayer() const {
-        return m_currentPlayer;
+        return currentPlayer_;
     }
-    Player *player() const {
-        return m_player;
+    const std::unique_ptr<Player> &player() const {
+        return player_;
     }
-    Player *opponent() const {
-        return m_opponent;
+    const std::unique_ptr<Player> &opponent() const {
+        return opponent_;
     }
     int32_t turnNumber() const {
-        return m_turnNumber;
+        return turnNumber_;
     }
     int32_t timeRemaining() const {
-        return m_timeRemaining;
+        return timeRemaining_;
     }
 
     // 验证接口
@@ -134,6 +134,16 @@ signals:
     void updateGraveyardInfo(int32_t playerGraveyardSize, int32_t opponentGraveyardSize);
     void updateTurnTimer(int32_t secondsRemaining);
 
+    void addGameLog(const QString &message, bool isImportant = false);
+    void processAITurn();
+
+public:
+    // 时间管理
+    std::unique_ptr<QTimer> turnTimer_;
+    std::unique_ptr<QTimer> aiTimer_;
+    int32_t timeRemaining_;
+    int32_t turnNumber_;
+
 private:
     explicit GameEngine(QObject *parent = nullptr);
     GameEngine(const GameEngine &) = delete;
@@ -157,7 +167,6 @@ private:
     void processEndPhase();
 
     // AI控制
-    void processAITurn();
     void aiPlayCards();
     void aiAttack();
 
@@ -169,7 +178,6 @@ private:
     void triggerCardEffects(Card *card, const QString &event);
 
     // 辅助函数
-    void addGameLog(const QString &message, bool isImportant = false);
     void updateAllUI();
 
 private:
@@ -182,12 +190,6 @@ private:
     std::unique_ptr<Player> player_;
     std::unique_ptr<Player> opponent_;
     Player *currentPlayer_;
-
-    // 时间管理
-    std::unique_ptr<QTimer> turnTimer_;
-    std::unique_ptr<QTimer> aiTimer_;
-    int32_t timeRemaining_;
-    int32_t turnNumber_;
 
     // 游戏记录
     QStack<QString> actionHistory_;

@@ -4,8 +4,8 @@
 #include <QVector>
 #include <QRandomGenerator>
 #include "Card.h"
-#include "DatabaseManager.h"
-#include "Logger.h"
+#include "../../utils/DatabaseManager/BaseManager/DatabaseManager.h"
+#include "../../utils/LoggerManager/Logger.h"
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonArray>
